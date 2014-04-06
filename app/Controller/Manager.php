@@ -16,6 +16,6 @@ class Controller_Manager extends AbstractController
 	public function login()
 	{
 		echo 'login_page';
-		var_dump($this->params->getAll());
+		$this->view->message = 'Yello';
 	}
 } 

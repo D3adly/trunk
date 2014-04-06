@@ -17,7 +17,6 @@ class Config
 		$path = str_replace('library/Config.php', 'config', $path);
 		$this->path = $path . '/' . $config_type . '.ini';
 		$this->readConfig();
-		var_dump($this->settings);
 	}
 
 	public function getGroup($group)

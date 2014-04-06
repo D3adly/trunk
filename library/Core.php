@@ -9,6 +9,7 @@
 class Core
 {
 	public $controller;
+	public $controller_name;
 	public $action;
 	public $view;
 	public $params;
@@ -18,19 +19,21 @@ class Core
 	{
 		$this->config = new Config('app');
 		$this->parseUrl();
+		$this->view = new Renderer($this);
 		$this->controller = new $this->controller($this);
 		$this->controller->{$this->action}();
 	}
 
 	public function loadPage()
 	{
-
+		$this->view->render();
 	}
 
 	private function parseUrl()
 	{
 		$this->q_string = '*';
-		$this->controller = 'Controller_' . ucwords(strtolower((!empty($_GET['ct'])) ? $_GET['ct'] : 'index'));
+		$this->controller_name = ucwords(strtolower((!empty($_GET['ct'])) ? $_GET['ct'] : 'index'));
+		$this->controller = 'Controller_' . $this->controller_name;
 		if (isset($_GET['rq'])) {
 			$path = explode('/', $_GET['rq']);
 			array_shift($path);
@@ -42,7 +45,8 @@ class Core
 			$this->action = 'index';
 		}
 		if (!class_exists($this->controller)) {
-			$this->controller = 'Controller_Index';
+			$this->controller_name = 'Index';
+			$this->controller = 'Controller_' . $this->controller_name;
 		};
 		if (!empty($path)) {
 			array_shift($path);

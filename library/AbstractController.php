@@ -16,6 +16,13 @@ class AbstractController
 		$this->config = $core->config;
 		$this->view = $core->view;
 		$this->params = $core->params;
+		$this->controller_name = $core->controller_name;
+		$this->setView();
+	}
+
+	private function setView()
+	{
+		$this->view->setView($this->controller_name . '/' . $this->action);
 	}
 
 } 
