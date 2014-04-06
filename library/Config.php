@@ -14,19 +14,20 @@ class Config
 	public function __construct($config_type)
 	{
 		$path = __FILE__;
-		$path = str_replace('library', 'config', $path);
+		$path = str_replace('library/Config.php', 'config', $path);
 		$this->path = $path . '/' . $config_type . '.ini';
 		$this->readConfig();
+		var_dump($this->settings);
 	}
 
 	public function getGroup($group)
 	{
-		return;
+		return (isset($this->settings[$group])) ? $this->settings[$group] : false;
 	}
 
-	public function getValue($key, $group = false)
+	public function getValue($key, $group = 'main_settings_section')
 	{
-		return;
+		return (isset($this->settings[$group][$key])) ? $this->settings[$group][$key] : false;
 	}
 
 	private function readConfig()
