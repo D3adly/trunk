@@ -1,0 +1,9 @@
+RewriteEngine On
+Options +FollowSymLinks
+RewriteBase /
+
+#RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]*)(.*)$ index.php?ct=$1&rq=$2 [L,QSA]
+

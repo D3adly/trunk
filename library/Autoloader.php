@@ -75,6 +75,8 @@ class Autoloader
 		$d_name = dirname(__FILE__) . '/';
 		$file_path = str_replace('_', '/', $class);
 		$file = $d_name . $file_path . '.php';
+		$file = str_replace('library/Controller/', 'app/Controller/', $file);
+		$file = str_replace('library/Model/', 'app/Model/', $file);
 		if (file_exists($file)) {
 			require_once($file);
 		}
