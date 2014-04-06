@@ -14,7 +14,8 @@ class Core
 
 	public function __construct()
 	{
-
+		echo 'core start';
+		$config = new Config('app');
 	}
 
 	public function loadPage()
