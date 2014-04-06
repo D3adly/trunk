@@ -74,6 +74,9 @@ class Autoloader
 	{
 		$d_name = dirname(__FILE__) . '/';
 		$file_path = str_replace('_', '/', $class);
-		require_once($d_name . $file_path . '.php');
+		$file = $d_name . $file_path . '.php';
+		if (file_exists($file)) {
+			require_once($file);
+		}
 	}
 }
